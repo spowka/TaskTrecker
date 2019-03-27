@@ -1,0 +1,14 @@
+.modal-header {
+  position: relative;
+}
+
+.modal-actions {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 1rem;
+  margin: auto;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}

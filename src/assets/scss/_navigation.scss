@@ -1,0 +1,16 @@
+.navbar {
+  .nav-item {
+    &.active {
+      background-color: $bg-depth-list;
+      border-left: 5px solid $brand-secondary;
+    }
+
+    &:hover {
+      background-color: $bg-depth-list;
+    }
+
+    .nav-link {
+      font-weight: 600;
+    }
+  }
+}

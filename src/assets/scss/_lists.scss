@@ -1,0 +1,24 @@
+.list-container {
+  position: relative;
+
+  .list-toolbar {
+    position: absolute;
+    padding: 0 1rem;
+    z-index: $layer-main-actions;
+    top: -(map-get($btn-circle-sizes, 'xl'))/2;
+  }
+}
+
+.card {
+  @include appear();
+}
+
+.card-actions {
+  position: absolute;
+  top: $card-spacer-x / 3;
+  right: $card-spacer-x / 3;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  z-index: $layer-list-actions;
+}

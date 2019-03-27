@@ -1,0 +1,176 @@
+<div class="modal-backdrop fade show"></div>
+<div id="exampleModalLive" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" style="padding-right: 17px; display: block;">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title mt-2" id="exampleModalLiveLabel">TEST INFORMATION</h6>
+        <button type="button" class="btn btn-light btn-circle-md" (click)=onClose()>
+           <fa-icon icon="times" [fixedWidth]="true"></fa-icon>
+        </button>
+      </div>
+      <div class="modal-body scrollbar scrollbar-dark">
+        <form [formGroup]="form">
+          <fieldset class="border-top d-flex">
+            <legend class="text-center w-auto">
+              <h5 class="text-secondary mx-2">Title</h5>
+            </legend>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="row">
+                    <div class="col-12">
+                      <span><label class="mb-0" for="title">Title</label></span>
+                    </div>
+                    <div class="col-12">
+                      <input
+                       required
+                       type="text"
+                       id="title"
+                       formControlName="title"
+                       class="form-control"
+                       autocomplete="off">
+                      <!-- <small *ngIf="!form.get('title').valid && form.get('title').touched" class="form-text text-danger">Please enter a valid title</small> -->
+                      <!-- <small appAppErrorMessage name="e" [ngClass]="{'showMessage' : !form.get('title').valid && (form.get('title').dirty || form.get('title').touched)}" [ngStyle]="{'opacity': 0}" class="form-text text-danger">Please enter a valid title</small> -->
+                      <p appAppErrorMessage [appVisible]="!form.get('title').valid && (form.get('title').dirty || form.get('title').touched)" class="form-text text-danger m-0 mb-2"><small>Please enter a valid title</small></p>
+                      <!-- <p appAppErrorMessage [appVisible]="true" class="form-text text-danger m-0 mb-2"><small>Please enter a valid title</small></p> -->
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 pb-1">
+                      <span>Difficulty</span>
+                    </div>
+                    <div class="col-12">
+                      <div class="w-100 form-group mb-0" tabindex="0" appDropdown>
+                        <input required type="hidden" formControlName="difficulty" appDropdownInput>
+                        <button type="button" class="form-control rounded btn btn-block btn-light" appDropdownToggle>
+                          <span class="float-left" appDropdownText></span>
+                          <fa-icon class="float-right" icon="angle-down" [fixedWidth]="true"></fa-icon>
+                        </button>
+                        <ul class="shadow w-100" appDropdownMenu>
+                          <li *ngFor="let difficultyLevel of difficulty" #liDifficulty [data]="difficultyLevel" appDropdownMenuItem>{{ difficultyLevel.text }}</li>
+                        </ul>
+                      </div>
+                      <!-- appVisible="hasError('difficulty')" -->
+                      <!-- <small appAppErrorMessage name="e" [ngStyle]="{'opacity': 0}" appAppErrorMessage class="form-text text-danger">Please select a difficulty</small> -->
+                      <!-- <p appAppErrorMessage name="e" [ngClass]="{'showMessage' : !form.get('difficulty').valid && (form.get('difficulty').dirty || form.get('title').touched)}" [ngStyle]="{'opacity': 0}" class="form-text text-danger m-0 mb-2"><small>Please select a difficulty</small></p> -->
+                      <p appAppErrorMessage [appVisible]="!form.get('difficulty').valid && (form.get('difficulty').dirty || form.get('difficulty').touched)" class="form-text text-danger m-0 mb-2"><small>Please select a difficulty</small></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 pb-1">
+                      <span>Subject</span>
+                    </div>
+                    <div class="col-12">
+                      <div class="w-100 form-group mb-0" tabindex="0" appDropdown>
+                        <input required type="hidden" formControlName="subject" appDropdownInput>
+                        <button type="button" class="form-control rounded btn btn-block btn-light" appDropdownToggle>
+                          <span class="float-left" appDropdownText></span>
+                          <fa-icon class="float-right" icon="angle-down" [fixedWidth]="true"></fa-icon>
+                        </button>
+                        <ul class="shadow w-100" appDropdownMenu>
+                          <li *ngFor="let subject of subjects" #liSubjects [data]="subject" appDropdownMenuItem>{{ subject.text }}</li>
+                        </ul>
+                      </div>
+                      <!-- <small [ngStyle]="{'opacity': 0}" class="form-text text-danger">Please select a subject</small> -->
+                      <!-- <p appAppErrorMessage name="e" [ngClass]="{'showMessage' : !form.get('title').valid && (form.get('title').dirty || form.get('title').touched)}" [ngStyle]="{'opacity': 0}" class="form-text text-danger m-0 mb-2"><small>Please select a subject</small></p> -->
+                      <p appAppErrorMessage [appVisible]="!form.get('subject').valid && (form.get('subject').dirty || form.get('subject').touched)" class="form-text text-danger m-0 mb-2"><small>Please select a subject</small></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 pb-1">
+                      <span>Paragraph</span>
+                    </div>
+                    <div class="col-12">
+                      <div class="w-100 form-group mb-0" tabindex="0" appDropdown>
+                        <input required type="hidden" formControlName="paragraph" appDropdownInput>
+                        <button type="button" class="form-control rounded btn btn-block btn-light" appDropdownToggle>
+                          <span class="float-left" appDropdownText></span>
+                          <fa-icon class="float-right" icon="angle-down" [fixedWidth]="true"></fa-icon>
+                        </button>
+                        <ul class="shadow w-100" appDropdownMenu>
+                          <li *ngFor="let paragraph of paragraphs" #liParagraphs [data]="paragraph" appDropdownMenuItem>{{ paragraph.text }}</li>
+                        </ul>
+                      </div>
+                      <!-- <small [ngStyle]="{'opacity': 0}" class="form-text text-danger">Please select a paragraph</small> -->
+                      <p appAppErrorMessage [appVisible]="!form.get('paragraph').valid && (form.get('paragraph').dirty || form.get('paragraph').touched)" class="form-text text-danger m-0 mb-2"><small>Please select a paragraph</small></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 pb-1">
+                      <span>Level</span>
+                    </div>
+                    <div class="col-12">
+                      <div class="w-100 form-group mb-0" tabindex="0" appDropdown>
+                        <input required type="hidden" formControlName="level" appDropdownInput>
+                        <button type="button" class="form-control rounded btn btn-block btn-light" appDropdownToggle>
+                          <span class="float-left" appDropdownText></span>
+                          <fa-icon class="float-right" icon="angle-down" [fixedWidth]="true"></fa-icon>
+                        </button>
+                        <ul class="shadow w-100" appDropdownMenu>
+                          <li *ngFor="let level of levels" #liLevels [data]="level" appDropdownMenuItem>{{ level.text }}</li>
+                        </ul>
+                      </div>
+                      <!-- <small [ngStyle]="{'opacity': 0}" class="form-text text-danger">Please select a leve</small> -->
+                      <!-- <p appAppErrorMessage name="e" [ngClass]="{'showMessage' : !form.get('title').valid && (form.get('title').dirty || form.get('title').touched)}" [ngStyle]="{'opacity': 0}" class="form-text text-danger m-0 mb-2"><small>Please select a leve</small></p> -->
+                      <p appAppErrorMessage [appVisible]="!form.get('level').valid && (form.get('level').dirty || form.get('level').touched)" class="form-text text-danger m-0 mb-2"><small>Please select a leve</small></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 pb-4">
+                  <app-sticky-note [ngStyle]="">
+                    <textarea class="stickyNote scrollbar-dark" id="stickyNote"  formControlName="descriptionText"></textarea>
+                  </app-sticky-note>
+                </div>
+              </div>
+              <!-- </div> -->
+              <!-- <app-sticky-note [FormControlName]="'descriptionText'"></app-sticky-note> -->
+              <!-- <div class="notes w-50 h-50 bg-paper rounded ml-auto mr-4 py-3 pl-3 pr-1">
+                <p class="ml-2 mb-2"><label for="note">DESCRIPTION</label></p>
+                <div class="overflow-auto scrollbar pr-2">
+                  <div>
+                    <textarea id="note" class="description rounded" formControlName="descriptionText" autosize></textarea>
+                  </div>
+                </div>
+              </div> -->
+              <div class="row mt-4">
+                <div class="col-sm-1">
+                  <button type="button" class="btn btn-light btn-circle-md mb-2" (click)=onAddLog()>
+                    <fa-icon icon="plus" [fixedWidth]="true"></fa-icon>
+                  </button>
+                </div>
+                <div class="col-sm-11">
+                  <div class="w-100 d-flex justify-content-end">
+                    <button *ngIf="getFormArray('interchange').length > 1" type="button" class="btn btn-rounded btn-light  font-weight-bold mb-2 mr-1" (click)="onClearAll()">Clear all</button>
+                    <label for="select" class="w-25 btn btn-rounded btn-primary">SELECT</label>
+                    <input type="file" id="select" formControlName="file" class="d-none" (input)="getFileContent(inptFile)" #inptFile>
+                  </div>
+                </div>
+              </div>
+              <div class="row" formArrayName="interchange">
+                <div class="col-12">
+                  <div class="input-group mb-1" *ngFor="let log of getFormArray('interchange'); index as i; first as first; last as last" [formGroupName]="i">
+                      <input type="text" formControlName="question" class="w-50 form-control" placeholder="Question">
+                      <input type="text" formControlName="answer" class="w-25 form-control" placeholder="Answer">
+                      <div *ngIf="!(first && last)" class="input-group-append">
+                        <button type="button" class="btn btn-outline-danger" (click)="onRemove(i)">
+                          <fa-icon icon="trash" [fixedWidth]="true"></fa-icon>
+                        </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      <div class="modal-footer">
+          <!-- [disabled]="!this.form.valid" -->
+        <button type="submit" class="btn btn-rounded btn-outline-secondary" (click)="onSubmit(btnSave)" #btnSave>
+          <fa-icon icon="save" [fixedWidth]="true"></fa-icon>
+          Save
+        </button>
+        <button type="button" class="btn btn-rounded btn-light" data-dismiss="modal" (click)="onClose()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

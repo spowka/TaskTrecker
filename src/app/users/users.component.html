@@ -1,0 +1,12 @@
+<router-outlet></router-outlet>
+<div class="list-container pt-2">
+  <div class="list-toolbar">
+    <button type="button" class="btn btn-secondary btn-circle-xl shadow mr-2" tooltip="Invite Users" containerClass="bg-light" placement="bottom" (click)="onNewUser()">
+      <fa-icon icon="ticket-alt" [fixedWidth]="true" size="lg"></fa-icon>
+    </button>
+    <button type="button" class="btn btn-light btn-circle-xl shadow mr-2" tooltip="Search for Users" placement="bottom">
+      <fa-icon icon="search" [fixedWidth]="true" size="lg"></fa-icon>
+    </button>
+  </div>
+  <app-user-list></app-user-list>
+</div>

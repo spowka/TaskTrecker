@@ -1,0 +1,31 @@
+@keyframes shake {
+  10%, 90% {
+    transform: translate(-1px, 0);
+  }
+
+  20%, 80% {
+    transform: translate(2px, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate(-4px, 0);
+  }
+
+  40%, 60% {
+    transform: translate(4px, 0);
+  }
+}
+
+@keyframes appear {
+	0% { opacity: 0; transform: scale(.8); }
+	80% { opacity: 1; transform: scale(1.05); }
+	100% { opacity: 1; transform: scale(1); }
+}
+
+@mixin shake() {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@mixin appear() {
+  animation: appear .35s ease-in;
+}

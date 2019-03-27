@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Josefin+Slab');
+
+$font-family: 'Open Sans', sans-serif;
+$font-family-stickyNote: 'Josefin Slab', serif;
+
+$brand-primary: #03a9f4;
+$brand-secondary: #e91d62;
+$brand-info: #03a9f4;
+$brand-success: #78bb14;
+$brand-warning: #ff5722;
+$brand-danger: #f44336;
+$brand-dark: #262b2f;
+$brand-light: #ffffff;
+$brand-toolbar: #343a40;
+$brand-paper: #e3c381;
+$brand-paper-ligth: #ffc;
+
+$brand-colors: (
+  primary: $brand-primary,
+  secondary: $brand-secondary,
+  info: $brand-info,
+  success: $brand-success,
+  warning: $brand-warning,
+  danger: $brand-danger,
+  dark: $brand-dark,
+  light: $brand-light,
+  toolbar: $brand-toolbar,
+  paper: $brand-paper
+);
+
+$theme-list: $brand-colors;
+
+$text-color-default: #222222;
+$border-color-default: #535353;
+
+$btn-padding-x: 1rem;
+
+$input-height: calc(2.5rem + 2px);
+$input-line-height: 1rem;
+$input-padding-x: 1.25rem;
+$input-padding-y: 0.75rem;
+$input-font-size: 0.875rem;
+
+$badge-padding-y: 0.35rem;
+$badge-padding-x: 0.5rem;
+$badge-pill-padding-x: 0.5rem;
+
+$thumbnail-padding: 0.15rem;
+$thumbnail-border-color: $brand-info;
+
+$card-cap-bg: darken($brand-light, 2%);
+
+$enable-caret: false;
+
+$dropdown-padding-y: 0.5rem;
+$dropdown-padding-x: 0.5rem;
+
+$dropdown-line-height: 2rem;
+$dropdown-link-hover-bg: lighten($brand-primary, 45%);
+$dropdown-link-active-bg: $brand-primary;
+
+$navbar-dark-color: darken($brand-light, 10%);
+$navbar-dark-hover-color: $brand-dark;
+$navbar-dark-active-color: $brand-dark;
+
+$toolbar-bg-color: $brand-toolbar;
+
+// $fontFamily: $font-family;
+// $fontSize: 1em;
+// $borderRadius: 4px;
+// $disabledOpacity: 0.35;
+
+// //Header
+// $headerBorderWidth: 1px;
+// $headerBorderColor: #404040;
+// $headerBgColor: #242122;
+// $headerTextColor: #f4f4f9;
+// $headerFontWeight: bold;
+// $headerIconTextColor: #f4f4f9;
+
+// //Content
+// $contentBorderWidth: 1px;
+// $contentBorderColor: #e3e3e3;
+// $contentBgColor: #f1f1f1;
+// $contentTextColor: #404040;
+
+// //Default State
+// $stateDefaultBorderWidth: 1px;
+// $stateDefaultBorderColor: #404040;
+// $stateDefaultBgColor: #242122;
+// $stateDefaultTextColor: #fafafa;
+
+// //Active State
+// $stateActiveBorderColor: $brand-primary;
+// $stateActiveBgColor: $brand-primary;
+// $stateActiveTextColor: darken($brand-primary, 35%);
+
+// //Highlight State
+// $stateHighlightBorderColor: #723c9b;
+// $stateHighlightBgColor: #65358a;
+// $stateHighlightTextColor: #ffffff;
+
+// //Focus State
+// $stateFocusBorderColor: $stateActiveBorderColor;
+// $stateFocusBgColor: $stateActiveBgColor;
+// $stateFocusTextColor: $stateActiveTextColor;
+
+// //Error State
+// $stateErrorBorderColor: #ca3838;
+// $stateErrorBgColor: #ca3838;
+// $stateErrorTextColor: #ff8f8f;
+
+// //Hover State
+// $stateHoverBorderColor: lighten($stateActiveBorderColor, 10%);
+// $stateHoverBgColor: lighten($stateActiveBgColor, 10%);
+// $stateHoverTextColor: $stateActiveTextColor;
+
+// //Forms
+// $inputBgColor: #ffffff;
+// $inputTextColor: #304915;
+// $invalidInputBorderColor: #ca3838;
+// $inputGroupTextColor: #ffffff;
+
+// @import '~node_modules/primeng/resources/themes/_theme';

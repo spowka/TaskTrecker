@@ -1,0 +1,182 @@
+$stickyNote-font-size: 16px;
+
+.switch {
+  label {
+    cursor: pointer;
+
+    input[type=checkbox] {
+      opacity: 0;
+      width: 0;
+      height: 0;
+
+      &:checked {
+        & + .lever {
+          &::after {
+            left: 1.5rem;
+          }
+        }
+      }
+    }
+
+    .lever {
+      content: "";
+      position: relative;
+      display: inline-block;
+      width: 2.5rem;
+      height: .9375rem;
+      margin: 0 1rem;
+      vertical-align: middle;
+      border-radius: .9375rem;
+      background-color: #818181;
+      transition: background-color .3s ease;
+
+      &::after {
+        content: "";
+          position: absolute;
+          display: inline-block;
+          width: 1.3125rem;
+          height: 1.3125rem;
+          top: -.1875rem;
+          left: -.3125rem;
+          border-radius: 1.3125rem;
+          background-color: #f1f1f1;
+          box-shadow: 0 0.0625rem 0.1875rem 0.0625rem rgba(0,0,0,.4);
+          transition: left .3s ease, background-color .3s ease, box-shadow 1s ease;
+      }
+    }
+  }
+}
+
+.notes {
+  .scrollbar {
+    height: 120px;
+
+    > div {
+      background: linear-gradient(transparent, transparent 29px, #535353 29px);
+      background-size: 29.5px 29.5px;
+      min-height: 100px;
+    }
+  }
+
+  textarea {
+    resize: none;
+    display:block;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    line-height: 30px;
+    padding: 0 10px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #535353;
+    box-sizing: border-box;
+  }
+}
+
+.stickyNoteContainer {
+  background: $brand-paper-ligth;
+  h5 {
+    font-family: $font-family-stickyNote;
+    letter-spacing: 1px;
+    font-weight: 900;
+  }
+}
+
+.stickyNote {
+  height: 100%;
+  width: 100%;
+  text-decoration:none;
+  font-family: $font-family-stickyNote;
+  font-weight: 700;
+  font-size: $stickyNote-font-size;
+  background: $brand-paper-ligth;
+  display:block;
+  border: none;
+  outline: none;
+  resize: none;
+}
+
+@each $name, $color in $brand-colors {
+  .switch-#{$name} input[type=checkbox]{
+    &:checked + .lever {
+      background-color: rgba($color, 0.5);
+
+      &::after {
+        background-color: $color;
+      }
+    }
+
+    &:focus + .lever {
+      &::after {
+        box-shadow: 0 0 0 0.2rem rgba($color, 0.5);
+      }
+    }
+  }
+}
+
+.form-control {
+  color: $text-color-default;
+  border-color: lighten($border-color-default, 40%);
+
+  .login-layout-content & {
+    border-radius: $input-height;
+  }
+
+  font-size: $input-font-size;
+
+  &:focus {
+    border-color: $brand-primary;
+    box-shadow: inset 0 1px 2px rgba($brand-primary, .39), 0 -1px 1px #ffffff, 0 1px 0 #ffffff;
+  }
+}
+
+.form-group {
+  .dropdown-item {
+    min-height: 2.5rem;
+    padding: 0.5rem 0.5rem;
+  }
+}
+
+.form-textarea {
+  background-color: #f5efbf;
+}
+
+.display {
+  display: block;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @each $prop, $abbrev in (margin: m, padding: p) {
+      @each $size, $length in $spacers {
+
+        .#{$abbrev}#{$infix}-m-#{$size} { #{$prop}: -$length !important; }
+        .#{$abbrev}t#{$infix}-m-#{$size},
+        .#{$abbrev}y#{$infix}-m-#{$size} {
+          #{$prop}-top: -$length !important;
+        }
+        .#{$abbrev}r#{$infix}-m-#{$size},
+        .#{$abbrev}x#{$infix}-m-#{$size} {
+          #{$prop}-right: -$length !important;
+        }
+        .#{$abbrev}b#{$infix}-m-#{$size},
+        .#{$abbrev}y#{$infix}-m-#{$size} {
+          #{$prop}-bottom: -$length !important;
+        }
+        .#{$abbrev}l#{$infix}-m-#{$size},
+        .#{$abbrev}x#{$infix}-m-#{$size} {
+          #{$prop}-left: -$length !important;
+        }
+      }
+    }
+  }
+}

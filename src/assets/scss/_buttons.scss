@@ -1,0 +1,78 @@
+$btn-circle-sizes: (
+  'xs': 25px,
+  'sm': 29px,
+  'md': 35px,
+  'lg': 45px,
+  'xl': 60px
+);
+
+.btn.btn-rounded {
+  border-radius: 19px;
+}
+
+.btn-lg.btn-rounded {
+  border-radius: 24px;
+}
+
+.btn-sm.btn-rounded {
+  border-radius: 16px;
+}
+
+@mixin button-icon-variant($color, $color-active: darken($color, 10%)) {
+  color: $color;
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  line-height: 1.8;
+  height: 1.8em;
+  width: 1.8em;
+  text-align: center;
+  opacity: 0.5;
+
+  &:focus,
+  &.focus {
+    opacity: 0.8;
+    box-shadow: none;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &.disabled,
+  &:disabled {
+    opacity: 0.3;
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .btn-icon-#{$color} {
+    @include button-icon-variant($value);
+  }
+}
+
+.dropdown-menu {
+  padding: $dropdown-padding-y $dropdown-padding-x;
+  line-height: $dropdown-line-height;
+
+  .dropdown-item {
+    cursor: pointer;
+  }
+}
+
+@mixin button-circle-variant($size) {
+  width: $size;
+  height: $size;
+  padding: 0;
+  text-align: center;
+  border-radius: 50%;
+  line-height: 1;
+}
+
+@each $size, $value in $btn-circle-sizes {
+  .btn-circle-#{$size} {
+    @include button-circle-variant($value);
+  }
+}

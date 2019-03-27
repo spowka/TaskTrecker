@@ -1,0 +1,35 @@
+<div class="list-group-item d-flex align-items-center">
+  <div class="d-flex mr-1" style="width: 200px">
+    <div
+     class="badge align-self-stretch"
+     style="display: block" #badge
+     [style.background-position]="getBgPosition()"></div>
+    <div class="ml-4 mt-2">
+      <h6 class="font-weight-bold mb-1"><small class="font-weight-bold">{{ subjects[log.subject].text }}</small></h6>
+      <h6 class="font-weight-bold my-1"><small class="font-weight-bold">{{ paragraphs[log.paragraph].text }}</small></h6>
+      <h6 class="font-weight-bold my-1"><small class="font-weight-bold text-nowrap font-italic">{{ 'Level ' + levels[log.level].text }}</small></h6>
+    </div>
+  </div>
+  <div class="d-flex flex-column flex-grow-1">
+    <h6 class="font-weight-bold">{{ log.title }}</h6>
+    <span><small>{{ log.descriptionText }}</small></span>
+  </div>
+  <div class="d-flex w-25 justify-content-end ml-auto" appDropdown>
+      <button type="button" class="btn btn-icon-dark btn-light btn-circle-md mr-1" (click)="onEdit(log)">
+        <fa-icon icon="marker" [fixedWidth]="true"></fa-icon>
+      </button>
+      <button type="button" class="btn btn-icon-dark btn-light btn-circle-md" (click)="onRemove(index)">
+        <fa-icon icon="trash" [fixedWidth]="true"></fa-icon>
+      </button>
+      <button type="button" class="btn btn-icon-dark btn-light btn-circle-md dropdown-toggle-split" appDropdownToggle>
+          <fa-icon icon="download" [fixedWidth]="true"></fa-icon>
+      </button>
+      <div class="dropdown-menu shadow dropdown-menu-right" appDropdownMenu>
+        <a class="text-dark btn m-1" appDropdownMenuItem #btnDownloadQuestions (click)="onDownloadQuestions(log)">Questions</a>
+        <a class="text-dark text-wrap btn m-1" appDropdownMenuItem #btnDownloadInterchange (click)="onDownloadInterchange(log)">Questions & Answers</a>
+      </div>
+    </div>
+  </div>
+
+
+

@@ -1,0 +1,5 @@
+<ul class="list-group m-2 shadow">
+  <li class="list-group-item" *ngFor="let log of logs; index as index">
+    <app-log-item class="h-100" [log]="log" [index]="index"></app-log-item>
+  </li>
+</ul>

@@ -1,0 +1,12 @@
+<router-outlet></router-outlet>
+<div class="list-container p-3">
+  <div class="list-toolbar">
+    <button type="button" class="btn btn-secondary btn-circle-xl shadow mr-2" (click)="onNewLog()">
+     <fa-icon icon="plus" [fixedWidth]="true"></fa-icon>
+    </button>
+    <button type="button" class="btn btn-light btn-circle-xl shadow mr-2">
+      <fa-icon icon="search" [fixedWidth]="true"></fa-icon>
+    </button>
+  </div>
+  <app-log-list></app-log-list>
+</div>

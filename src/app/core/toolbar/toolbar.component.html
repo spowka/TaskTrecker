@@ -1,0 +1,15 @@
+<div class="btn-group" appDropdown>
+  <button type="button" class="btn btn-toolbar">
+    <figure>
+      <img src="https://m.media-amazon.com/images/G/01/gcx/gf/age-group-woman-circle._CB278609004_.png" alt="Profile Picture" class=" img-xs rounded-circle border shadow" />
+      <figcaption>Katerine</figcaption>
+    </figure>
+  </button>
+  <button type="button" class="btn btn-toolbar dropdown-toggle-split" appDropdownToggle>
+    <fa-icon icon="angle-down" [fixedWidth]="true"></fa-icon>
+  </button>
+  <ul class="dropdown-menu shadow w-100" appDropdownMenu>
+    <li appDropdownMenuItem>View Profile</li>
+    <li appDropdownMenuItem (click)="onSignOut()">Sign Out</li>
+  </ul>
+</div>

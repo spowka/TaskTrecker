@@ -1,0 +1,10 @@
+<div class="card-actions">
+  <button type="button" class="btn btn-light btn-circle-md" (click)="onToggle()" #button>
+    <fa-icon icon="ellipsis-v" [fixedWidth]="true"></fa-icon>
+  </button>
+  <ng-template [ngIf]="visible">
+    <button *ngFor="let action of actions" type="button" class="btn btn-{{ action.color }} btn-circle-sm shadow mr-1" (click)="onActionClick(action)" #button>
+      <fa-icon icon="{{ action.icon }}" [fixedWidth]="true" size="1x"></fa-icon>
+    </button>
+  </ng-template>
+</div>

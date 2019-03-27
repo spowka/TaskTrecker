@@ -1,0 +1,50 @@
+<div class="modal-backdrop show"></div>
+<div class="modal d-block">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Invite Users</h5>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-light btn-circle-md" [disabled]="sending" (click)="onClose()">
+            <fa-icon icon="times" [fixedWidth]="true"></fa-icon>
+          </button>
+        </div>
+      </div>
+      <div class="modal-body mx-5">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <h6 class="mb-3">Whom do you want to invite?</h6>
+          <div class="custom-control custom-radio">
+            <input type="radio" id="inviteStudents" formControlName="invitationType" value="user" class="custom-control-input">
+            <label class="custom-control-label" for="inviteStudents">Invite Students</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" id="inviteEmployees" formControlName="invitationType" value="employee" class="custom-control-input">
+            <label class="custom-control-label" for="inviteEmployees">Invite Employees</label>
+          </div>
+          <div *ngIf="triedToSubmit && hasError('invitationType', 'required')" class="alert alert-danger mt-2">
+            Please select the type of users you wish to invite.
+          </div>
+          <div formGroupName="emails" class="mt-2">
+            <div *ngFor="let email of getFormArray('emails'); index as i; first as first; last as last" [ngSwitch]="getStatus('emails.' + i)" class="form-row mb-1">
+              <input type="text" [formControlName]="i" class="form-control" placeholder="{{ first ? 'Enter an email' : 'Enter another email' }}" (input)="onInput(last)">
+              <fa-icon *ngSwitchCase="'error'" icon="times-circle" class="text-danger" [fixedWidth]="true"></fa-icon>
+              <fa-icon *ngSwitchCase="'valid'" icon="check-circle" class="text-success" [fixedWidth]="true"></fa-icon>
+              <fa-icon *ngSwitchDefault icon="times-circle" class="text-dark" [fixedWidth]="true"></fa-icon>
+            </div>
+          </div>
+          <div *ngIf="triedToSubmit && hasError('emails', 'hasItem')" class="alert alert-danger mt-2">
+            Please enter at least one email.
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-rounded btn-outline-secondary" (click)="onSubmit()" [disabled]="sending">
+          <fa-icon *ngIf="sending" icon="atom" [fixedWidth]="true" [spin]="true"></fa-icon>
+          <fa-icon *ngIf="!sending" icon="paper-plane" [fixedWidth]="true"></fa-icon>
+          Send Invitations
+        </button>
+        <button type="button" class="btn btn-rounded btn-light" (click)="onClose()" [disabled]="sending">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

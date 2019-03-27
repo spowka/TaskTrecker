@@ -1,0 +1,32 @@
+<div class="card-body">
+  <div class="row">
+    <div *ngIf="employee.image" class="ml-3">
+      <img
+        [src]="employee.image"
+        alt="Avatar"
+        class="border rounded-circle img-sm">
+    </div>
+    <div class="col">
+      <span class="card-title mb-0">{{ employee | fullName }}</span>
+      <p class="card-text text-muted">
+        <small>{{ employee.level }}</small>
+      </p>
+      <div *ngIf="employee.phone">
+        <fa-icon icon="phone" [fixedWidth]="true" class="text-muted"></fa-icon>
+        {{ employee.phone }}
+      </div>
+      <div *ngIf="employee.email">
+        <fa-icon icon="envelope" [fixedWidth]="true" class="text-muted"></fa-icon>
+        {{ employee.email }}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card-actions">
+  <button type="submit" class="btn btn-icon-dark mr-1">
+    <fa-icon icon="marker" class="mr-1"></fa-icon>
+  </button>
+  <button type="submit" class="btn btn-icon-dark">
+    <fa-icon icon="trash"></fa-icon>
+  </button>
+</div>

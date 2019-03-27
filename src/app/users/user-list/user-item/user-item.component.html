@@ -1,0 +1,23 @@
+<div class="card-body">
+  <div class="container">
+    <div class="row">
+      <div *ngIf="user.image" class="col-auto pl-0">
+        <div class="img-thumbnail rounded-circle">
+          <div class="bg-image rounded-circle img-sm" [style.backgroundImage]="'url(' + user.image + ')'"></div>
+        </div>
+      </div>
+      <div class="col pl-0">
+        <h5 class="card-title mb-0">{{ user | fullName }}</h5>
+        <p class="card-text text-muted">
+          <small>{{ user.email }}</small>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <span *ngIf="user.isAdmin" class="badge badge-pill badge-success mt-2 mr-2">Admin</span>
+      <span *ngIf="user.isStudent" class="badge badge-pill badge-info mt-2 mr-2">Student</span>
+      <span *ngIf="user.isEmployee" class="badge badge-pill badge-info mt-2">Employee</span>
+    </div>
+  </div>
+<div>
+<app-card-actions [actions]="actions"></app-card-actions>

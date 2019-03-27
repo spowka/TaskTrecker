@@ -1,0 +1,23 @@
+$img-sizes: (
+  'xs': 50px,
+  'sm': 70px,
+  'md': 100px,
+  'lg': 150px,
+  'xl': 250px
+);
+
+@mixin img-variant($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@each $size, $value in $img-sizes {
+  .img-#{$size} {
+    @include img-variant($value);
+  }
+}
+
+.bg-image {
+  background-size: cover;
+  background-position: center;
+}

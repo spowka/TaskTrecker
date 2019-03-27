@@ -1,0 +1,90 @@
+$font-family: "Times New Roman" !default;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 14px;
+}
+
+html, body {
+  font-family: $font-family;
+  @include full-size();
+  @include empty();
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  background-color: transparent;
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+app-root, app-login, app-layout {
+  display: block;
+  @include full-size();
+}
+
+.layout-wrapper {
+  @include full-size();
+}
+
+.login-layout-image {
+  background-image: url('assets/images/tech-group-meeting-flatlay_925x.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.login-layout-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // justify-content: center;
+
+  > img {
+    margin-top: 40%;
+  }
+}
+
+.layout-menu {
+  width: 300px;
+  z-index: $layer-menu;
+  background-color: $bg-depth-menu;
+}
+
+.layout-toolbar {
+  display: flex;
+  padding: 0.25rem 0.5rem;
+  background-color: $toolbar-bg-color;
+  box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.2);
+  z-index: $layer-toolbar;
+  justify-content: flex-end;
+  align-items: center;
+
+  figure {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    align-self: flex-end;
+
+    figcaption {
+      padding: 0 0.5rem;
+    }
+  }
+}
+
+.layout-content {
+  background-color: $bg-depth-list;
+}
+
+.auth-router {
+  + *, ~ .alert {
+    width: 60%;
+  }
+}

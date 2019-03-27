@@ -1,0 +1,12 @@
+<router-outlet></router-outlet>
+<div class="list-container pt-2">
+  <div class="list-toolbar">
+    <button type="button" class="btn btn-secondary btn-circle-xl shadow mr-2" (click)="onAdd()">
+      <fa-icon icon="plus" [fixedWidth]="true"></fa-icon>
+    </button>
+    <button type="button" class="btn btn-light btn-circle-xl shadow mr-2">
+      <fa-icon icon="search" [fixedWidth]="true"></fa-icon>
+    </button>
+  </div>
+  <app-student-list></app-student-list>
+</div>

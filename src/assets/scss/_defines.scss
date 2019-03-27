@@ -1,0 +1,9 @@
+$layer-menu: 100;
+$layer-main-actions: 95;
+$layer-toolbar: 90;
+$layer-list-actions: 85;
+$layer-list-toolbar: 80;
+
+$bg-depth-menu: $brand-light;
+$bg-depth-toolbar: darken($brand-light, 1%);
+$bg-depth-list: darken($brand-light, 7%);

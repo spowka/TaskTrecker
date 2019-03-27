@@ -1,0 +1,316 @@
+<div class="modal-backdrop fade show"></div>
+<div id="exampleModalLive" class="modal fade show display" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="exampleModalLiveLabel">NEW STUDENT</h6>
+        <button type="button" class="btn btn-light btn-circle-md" (click)="onClose()">
+          <fa-icon icon="times" [fixedWidth]="true"></fa-icon>
+        </button>
+      </div>
+      <div class="modal-body scrollspy">
+        <form [formGroup]="form" autocomplete="off" (ngSubmit)="onSubmit()">
+          <fieldset class="border-top">
+            <legend class="text-center w-auto px-3">
+              <h5 class="text-secondary">Student Information</h5>
+            </legend>
+            <div class="container mt-2">
+              <div class="row">
+                <div class="container mt-3">
+                  <div class="form-group">
+                    <div class="row mx-0">
+                      <label for="firstName">Name</label>
+                    </div>
+                    <div class="input-group">
+                      <input type="text" id="firstName" formControlName="firstName" class="form-control col-md-4"  placeholder="FirstName*">
+                      <input type="text" formControlName="middleName" class="form-control col-md-4" placeholder="MiddleName">
+                      <input type="text" formControlName="lastName" class="form-control col-md-4" placeholder="LastName*">
+                    </div>
+                    <div class="container">
+                      <div class="row">
+                        <small class="col-md-4 form-text text-danger" [appVisible]="!form.get('firstName').valid && form.get('firstName').touched">
+                          Please enter a valid first name</small>
+                        <small class="col-md-4"></small>
+                        <small class="col-md-4 form-text text-danger" [appVisible]="!form.get('lastName').valid && form.get('lastName').touched">
+                          Please enter a valid last name</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group" appDropdown>
+                    <label for="gender">Gender</label>
+                    <input type="hidden" id="gender" formControlName="gender" appDropdownInput>
+                    <button type="button" class="form-control btn btn-block btn-light" appDropdownToggle>
+                      <span class="float-left" appDropdownText></span>
+                      <fa-icon class="float-right" icon="angle-down" [fixedWidth]="true"></fa-icon>
+                    </button>
+                    <ul class="shadow w-100" appDropdownMenu>
+                      <li *ngFor="let gender of genders" [data]="gender" appDropdownMenuItem>{{ gender.text }}</li>
+                    </ul>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="birthDay">Birth Day</label>
+                    <input bsDatepicker type="text" id="birthDay" formControlName="birthDay" class="form-control" [bsConfig]="{ containerClass: 'theme-primary' }">
+                  </div>
+
+                  <div class="container mt-3">
+                    <div class="form-group">
+                      <div class="row">
+                        <label for="studied">Studied</label>
+                      </div>
+                      <div class="row">
+                        <div class="input-group" formGroupName="studied">
+                          <input bsDatepicker type="text" id="studied" formControlName="from" class="form-control col-md-6" [bsConfig]="{ containerClass: 'theme-primary' }" placeholder="From">
+                          <input bsDatepicker type="text" formControlName="to" class="form-control col-md-6" [bsConfig]="{ containerClass: 'theme-primary' }" placeholder="To">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div class="col col-md-5 notes w-75 h-100 bg-paper rounded mt-2 mr-4 py-3 pl-3 pr-1">
+                  <p class="ml-2 mb-2">Notes</p>
+                  <div class="overflow-auto scrollbar pr-2">
+                    <div>
+                      <textarea class="description rounded" autosize></textarea>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="border-top mt-5">
+            <legend class="text-center w-auto px-3">
+              <h5 class="text-secondary">Education, Work & Experience</h5>
+            </legend>
+            <div class="container ml-3">
+              <div class="row">
+                <div class="col-md-12">
+                  <div formArrayName="education">
+                    <div class="row align-items-center mb-1">
+                      <span>Education</span>
+                      <button type="button" class="btn btn-light btn-circle-md ml-1" (click)="onAddItem('education')">
+                        <fa-icon icon="plus" [fixedWidth]="true"></fa-icon>
+                      </button>
+                    </div>
+                    <div class="form-group" *ngFor="let educationItem of getFormArray('education'); index as i; first as first; last as last">
+                      <div class="row input-group" [formGroupName]="i">
+                        <input bsDatepicker type="text" formControlName="from" class="form-control col-md-3" [bsConfig]="{ containerClass: 'theme-primary' }" placeholder="From">
+                        <input bsDatepicker type="text" formControlName="to" class="form-control col-md-3" [bsConfig]="{ containerClass: 'theme-primary' }" placeholder="To">
+                        <input type="text" formControlName="description" class="form-control" placeholder="Description">
+                        <div *ngIf="!(first && last)" class="input-group-append">
+                          <button type="button" class="btn btn-outline-danger" (click)="onRemove(i, 'education')">
+                            <fa-icon icon="trash"></fa-icon>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div formArrayName="work">
+                    <div class="row align-items-center mb-1">
+                      <span>Work</span>
+                      <button type="button" class="btn btn-light btn-circle-md ml-1" (click)="onAddItem('work')">
+                        <fa-icon icon="plus" [fixedWidth]="true"></fa-icon>
+                      </button>
+                    </div>
+                    <div class="form-group" *ngFor="let workItem of getFormArray('work'); index as i; first as first; last as last">
+                      <div class="row input-group" [formGroupName]="i">
+                        <input bsDatepicker type="text" formControlName="from" class="form-control col-md-3" [bsConfig]="{ containerClass: 'theme-primary' }" placeholder="From">
+                        <input bsDatepicker type="text" formControlName="to" class="form-control col-md-3" [bsConfig]="{ containerClass: 'theme-primary' }" placeholder="To">
+                        <input type="text" formControlName="description" class="form-control" placeholder="Description">
+                        <div *ngIf="!(first && last)" class="input-group-append">
+                          <button type="button" class="btn btn-outline-danger" (click)="onRemove(i, 'work')">
+                            <fa-icon icon="trash"></fa-icon>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div formArrayName="trainings">
+                    <div class="row align-items-center mb-1">
+                      <span>Trainings</span>
+                      <button type="button" class="btn btn-light btn-circle-md ml-1" (click)="onAddItem('trainings')">
+                        <fa-icon icon="plus" [fixedWidth]="true"></fa-icon>
+                      </button>
+                    </div>
+                    <div class="form-group" *ngFor="let trainingsItem of getFormArray('trainings'); index as i; first as first; last as last">
+                      <div class="row input-group" [formGroupName]="i">
+                        <input bsDatepicker type="text" formControlName="from" class="form-control col-md-3" [bsConfig]="{ containerClass: 'theme-primary' }" placeholder="From">
+                        <input bsDatepicker type="text" formControlName="to" class="form-control col-md-3" [bsConfig]="{ containerClass: 'theme-primary' }" placeholder="To">
+                        <input type="text" formControlName="description" class="form-control" placeholder="Description">
+                        <div *ngIf="!(first && last)" class="input-group-append">
+                          <button type="button" class="btn btn-outline-danger" (click)="onRemove(i, 'trainings')">
+                            <fa-icon icon="trash"></fa-icon>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div formArrayName="other">
+
+                    <div class="row align-items-center mb-1">
+                      <span>Other</span>
+                      <button type="button" class="btn btn-light btn-circle-md ml-1" (click)="onAddItem('other')">
+                        <fa-icon icon="plus" [fixedWidth]="true"></fa-icon>
+                      </button>
+                    </div>
+
+                    <div class="form-group" *ngFor="let otherItem of getFormArray('other'); index as i; first as first; last as last">
+                      <div class="row input-group" [formGroupName]="i">
+                        <input bsDatepicker type="text" formControlName="from" class="form-control col-md-3" [bsConfig]="{ containerClass: 'theme-primary' }" placeholder="From">
+                        <input bsDatepicker type="text" formControlName="to" class="form-control col-md-3" [bsConfig]="{ containerClass: 'theme-primary' }" placeholder="To">
+                        <input type="text" formControlName="description" class="form-control" placeholder="Description">
+                        <div *ngIf="!(first && last)" class="input-group-append">
+                          <button type="button" class="btn btn-outline-danger" (click)="onRemove(i, 'other')">
+                            <fa-icon icon="trash"></fa-icon>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="border-top mt-5">
+            <legend class="text-center w-auto px-3">
+              <h5 class="text-secondary">Contacts</h5>
+            </legend>
+            <div formArrayName="emails" class="container ml-3">
+              <div class="row align-items-center mb-1">
+                <span>Emails</span>
+                <button type="button" class="btn btn-light btn-circle-md ml-1" (click)="onAddEmail()">
+                  <fa-icon icon="plus" [fixedWidth]="true"></fa-icon>
+                </button>
+              </div>
+              <div *ngFor="let emailItem of getFormArray('emails'); index as i; first as first; last as last" [formGroupName]="i" class="row input-group mb-2">
+                <div class="form-control col-md-3 p-0" appDropdown>
+                  <input type="hidden" formControlName="type" appDropdownInput>
+                  <button type="button" class="btn btn-block btn-light h-100" appDropdownToggle>
+                    <span class="float-left" appDropdownText></span>
+                    <fa-icon class="float-right" icon="angle-down" [fixedWidth]="true"></fa-icon>
+                  </button>
+                  <ul class="shadow w-100" appDropdownMenu>
+                    <li *ngFor="let email of emails" [data]="email" appDropdownMenuItem>{{ email.text }}</li>
+                  </ul>
+                </div>
+                <input type="text" formControlName="email" class="form-control col-md-9" placeholder="Email">
+                <div *ngIf="!(first && last)" class="input-group-append">
+                  <button type="button" class="btn btn-outline-danger" (click)="onRemove(i, 'emails')">
+                    <fa-icon icon="trash"></fa-icon>
+                  </button>
+                </div>
+              </div>
+              <div class="container">
+                <div class="row">
+                  <small class="col-md-3"></small>
+                  <small class="col-md-9 form-text text-danger" [appVisible]="!form.get('emails').valid && form.get('emails').touched">
+                    Please enter a valid email</small>
+                </div>
+              </div>
+            </div>
+            <div formArrayName="phones" class="container ml-3">
+              <div class="row align-items-center mb-1">
+                <span>Phones</span>
+                <button type="button" class="btn btn-light btn-circle-md ml-1" (click)="onAddPhone()">
+                  <fa-icon icon="plus" [fixedWidth]="true"></fa-icon>
+                </button>
+              </div>
+              <div *ngFor="let numberItem of getFormArray('phones'); index as i; first as first; last as last" [formGroupName]="i" class="row input-group mb-2">
+                <div class="form-control col-md-3 p-0" appDropdown>
+                  <input type="hidden" formControlName="type" appDropdownInput>
+                  <button type="button" class="btn btn-block btn-light h-100" appDropdownToggle>
+                    <span class="float-left" appDropdownText></span>
+                    <fa-icon class="float-right" icon="angle-down" [fixedWidth]="true"></fa-icon>
+                  </button>
+                  <ul class="shadow w-100" appDropdownMenu>
+                    <li *ngFor="let number of phones" [data]="number" appDropdownMenuItem>{{ number.text }}</li>
+                  </ul>
+                </div>
+                <input type="text" formControlName="number" class="form-control col-md-9" placeholder="Number">
+                <div *ngIf="!(first && last)" class="input-group-append">
+                  <button type="button" class="btn btn-outline-danger" (click)="onRemove(i, 'phones')">
+                    <fa-icon icon="trash"></fa-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6">
+              <label for="facebook">Facebook</label>
+              <input id="facebook" type="text" class="form-control" formControlName="facebook">
+            </div>
+            <div class="form-group col-6">
+              <label for="skype">Skype</label>
+              <input id="skype" type="text" class="form-control" formControlName="skype">
+            </div>
+          </fieldset>
+
+          <fieldset class="border-top mt-5">
+            <legend class="text-center w-auto px-3">
+              <h5 class="text-secondary">Address</h5>
+            </legend>
+            <div formGroupName="address">
+              <div class="container my-3">
+                <div class="">
+                  <label for="address1">Address</label>
+                    <div class="input-group">
+                      <input type="text" id="address1" formControlName="address1" class="form-control col-md-6" placeholder="Address1">
+                      <input type="text" formControlName="address2" class="form-control col-md-6" placeholder="Address2">
+                    </div>
+                </div>
+              </div>
+              <div class="container">
+                <div class="input-group mb-2">
+                  <input type="text" formControlName="city" class="form-control col-md-3" placeholder="City">
+                  <input type="text" formControlName="state" class="form-control col-md-3" placeholder="State">
+                  <div class="form-control col-md-3 p-0" appDropdown>
+                    <input type="hidden" formControlName="country" appDropdownInput>
+                    <button type="button" class="btn btn-block btn-light h-100" appDropdownToggle>
+                      <span class="float-left" appDropdownText></span>
+                      <fa-icon class="float-right" icon="angle-down" [fixedWidth]="true"></fa-icon>
+                    </button>
+                    <ul class="shadow w-100" appDropdownMenu>
+                      <li *ngFor="let country of countries" [data]="country" appDropdownMenuItem>{{ country.text }}</li>
+                    </ul>
+                  </div>
+                  <input type="text" formControlName="postalCode" class="form-control col-md-3" placeholder="Postal Code">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="border-top mt-5">
+            <legend class="text-center w-auto px-3">
+              <h5 class="text-secondary">Picture</h5>
+            </legend>
+          </fieldset>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-rounded btn-outline-secondary" (click)="onSubmit()">
+          <fa-icon icon="save" [fixedWidth]="true"></fa-icon>
+          Save</button>
+        <button type="button" class="btn btn-rounded btn-light" (click)="onClose()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
